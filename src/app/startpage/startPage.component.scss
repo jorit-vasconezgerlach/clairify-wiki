@@ -1,0 +1,75 @@
+@import '../../styles.scss';
+
+#landing {
+    min-height: $fullHeight;
+    display: grid;
+    place-items: center;
+
+    .contentBox {
+        max-width: 760px;
+        width: 100%;
+        height: 90%;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: space-between;
+
+        .main {
+            max-width: 760px;
+            width: 100%;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+        }
+
+        .logo {
+            height: 120px;
+            width: 120px;
+            border-radius: 100px;
+            overflow: hidden;
+            // background: white;
+
+            img {
+                width: 100%;
+                height: 100%;
+            }
+        }
+        h1 {
+            margin-top: .6rem;
+            font-size: 38px;
+            font-weight: 600;
+        }
+        .search {
+            margin-top: 1.6rem;
+            outline: none;
+            width: 100%;
+            border: none;
+            border-radius: 10px;
+            background: #333;
+            font-size: 1rem;
+            padding: 1rem .8rem;
+        }
+        h2 {
+            margin-top: 1.6rem;
+            font-weight: 400;
+        }
+
+        .scroll {
+            display: flex;
+            flex-direction: column;
+            font-weight: 600;
+            align-items: center;
+            gap: .8rem;
+
+            svg {
+                width: 26px;
+                height: 26px;
+            }
+        }
+    }
+}
+
+@media screen and (max-width: 767px) {
+}
+@media screen and (max-width: 575px) {
+}

@@ -1,0 +1,5 @@
+<div *ngIf="article">
+    <h2>{{ article.title }}</h2>
+    <p>Author: {{ article.author.name }}</p>
+    <div [innerHTML]="renderedMarkdown"></div>
+</div>  
