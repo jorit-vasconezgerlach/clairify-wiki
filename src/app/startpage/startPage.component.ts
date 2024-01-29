@@ -16,6 +16,9 @@ export class StartPageComponent {
 
     maxResults: number = 5;
 
+    initialMonthlyGoal: number = 40;
+    monthlyIncrease: number = 20;
+
     constructor (
         private articleService: ArticleService,
         private renderer: Renderer2, private el: ElementRef
@@ -24,7 +27,6 @@ export class StartPageComponent {
     ngOnInit(): void {
         this.articleService.getAllArticles().subscribe((data)=>{
             this.articles = data;
-            console.log(data);
         })
     }
 
@@ -90,5 +92,28 @@ export class StartPageComponent {
         });
     }
     
+    calculateRemainingArticles(): { percent?: number, left?: number, error: boolean } {
+        const currentDate = new Date();
+        const startDate = new Date(2024, 0, 1);
     
+        // months passed starting with 1
+        const monthsPassed = ((currentDate.getFullYear() - startDate.getFullYear()) * 12 + currentDate.getMonth() - startDate.getMonth()) + 1;
+
+        // calculate monthly goal + extra 20 per month
+        const goal = monthsPassed * 40 + ((monthsPassed - 1) * monthsPassed / 2) * 20;
+
+        // don't show bar if no articles
+        if (!this.articles?.length) {
+            return {error: true};
+        } else {
+            const percent = (this.articles.length / goal) * 100;
+            if (percent > 100) {
+                return {percent: 100, left: 0,  error: false};
+            } else if (percent < 0) {
+                return {error: true};
+            } else {
+                return {percent: percent, left: goal - this.articles.length, error: false};
+            }
+        }
+    }
 }

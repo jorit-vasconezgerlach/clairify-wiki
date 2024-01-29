@@ -3,7 +3,8 @@ import { ActivatedRoute } from '@angular/router';
 
 import { Article } from '../article.model';
 import { ArticleService } from '../services/article.service';
-import { TitleService } from '../services/title.service';
+import { TitleService } from '../services/head.service';
+import { Location } from '@angular/common';
 
 @Component({
     selector: 'app-root',
@@ -19,7 +20,8 @@ export class ArticleComponent {
     constructor(
         private articleService: ArticleService,
         private route: ActivatedRoute,
-        private titleService: TitleService
+        private titleService: TitleService,
+        private location: Location
     ) { }
 
     ngOnInit(): void {
@@ -27,12 +29,29 @@ export class ArticleComponent {
 
         this.articleService.getArticle(this.currentPath).subscribe((data) => {
             if(data.content && data.title) {
-                this.titleService.setTitle(data.title);
+                this.titleService.setTitle(`${data.title}  - Clarify Wiki`);
+                this.titleService.setLanguage(`${data.language}`);
+                this.titleService.setDescription(data.description);
+                if(data.tags != null || data.tags != '') {
+                    this.titleService.setKeywords(data.tags);
+                }
+                this.titleService.setCanonicalUrl('https://clarify.wiki' + this.location.path());
                 this.article = data;
             } else {
                 this.article = false;
                 this.titleService.setTitle("Article Not Found - Clarify Wiki");
             }
         });
+    }
+
+    calculateReadTimeByCharacters(content: string, charactersPerMinute: number = 1000): string {
+        const characters = content.length;
+        const minutes = Math.ceil(characters / charactersPerMinute);
+
+        if (minutes === 1) {
+            return '1 minute';
+        } else {
+            return `${minutes} minutes`;
+        }
     }
 }

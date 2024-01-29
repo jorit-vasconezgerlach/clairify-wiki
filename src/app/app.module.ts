@@ -11,7 +11,7 @@ import { MarkdownModule } from 'ngx-markdown';
 import { ArticleComponent } from './article/article.component';
 import { ArticleService } from './services/article.service';
 import { TableContainerDirective } from './table-container.directive';
-import { TitleService } from './services/title.service';
+import { TitleService } from './services/head.service';
 import { StartPageComponent } from './startpage/startPage.component';
 
 @NgModule({

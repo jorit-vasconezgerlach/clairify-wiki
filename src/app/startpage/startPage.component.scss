@@ -2,6 +2,9 @@
 
 section {
     padding: 1rem;
+    h2 {
+        font-size: 1.5rem;
+    }
 }
 
 #landing {
@@ -31,7 +34,6 @@ section {
             width: 120px;
             border-radius: 100px;
             overflow: hidden;
-            // background: white;
 
             img {
                 width: 100%;
@@ -42,6 +44,10 @@ section {
             margin-top: .6rem;
             font-size: 38px;
             font-weight: 600;
+        }
+        h2 {
+            color: #d9dbdf;
+            font-size: 1.2rem;
         }
         .search {
             margin-top: 1.6rem;
@@ -74,12 +80,13 @@ section {
                 a {
                     padding: .6rem .8rem;
                     color: white;
+                    font-weight: 600;
                     &:hover {
                         text-decoration: none;
                         background: #1f2324;
                     }
-                    .highlight {
-                        font-weight: 800;
+                    span.highlight {
+                        font-weight: 400;
                     }
                 }
             }
@@ -107,12 +114,34 @@ section {
 #all-articles {
     text-align: center;
     padding-bottom: 4rem;
-    h2 {
-        font-size: 1.5rem;
-    }
     ul li {
         margin: .6rem;
         list-style: none;
+    }
+}
+
+#monthly-articles {
+    display: grid;
+    place-items: center;
+    padding: 4rem 0;
+    background: #061319;
+    margin-bottom: 4rem;
+    .bar {
+        margin-top: .8rem;
+        width: 100%;
+        max-width: 400px;
+        background: #183D3D;
+        border-radius: 5px;
+        overflow: hidden;
+        .inner {
+            padding: .6rem .8rem;
+            background: #93B1A6;
+            p {
+                font-weight: 500;
+                color: #183D3D;
+                text-align: center;
+            }
+        }
     }
 }
 

@@ -13,7 +13,7 @@
             </div>
             <h2>Everything. Just clear and easy.</h2>
         </div>
-        <div class="scroll" style="visibility: hidden;">
+        <div class="scroll">
             <span>Learn about Clairfy</span>
             <svg xmlns="http://www.w3.org/2000/svg" width="26" height="26" viewBox="0 0 26 26" fill="none">
                 <path
@@ -23,6 +23,14 @@
                     d="M25.828 11.7956C25.828 11.4303 25.6888 11.0653 25.4099 10.7865C24.8528 10.2291 23.9493 10.2291 23.3922 10.7865L12.9854 21.193L2.57868 10.7865C2.02131 10.2291 1.11776 10.2291 0.56068 10.7865C0.00359721 11.3441 0.00388262 12.2474 0.56068 12.8045L11.9763 24.2198C12.5337 24.7772 13.4372 24.7772 13.9943 24.2198L25.4099 12.8045C25.6885 12.526 25.828 12.1609 25.828 11.7956Z"
                     fill="#404040" />
             </svg>
+        </div>
+    </div>
+</section>
+<section id="monthly-articles" *ngIf="calculateRemainingArticles().error == false">
+    <h2>Monthly Article Goal</h2>
+    <div class="bar">
+        <div class="inner" [style.width.%]="calculateRemainingArticles().percent">
+            <p>{{ calculateRemainingArticles().left }} articles left ({{ calculateRemainingArticles().percent }}%)</p>
         </div>
     </div>
 </section>

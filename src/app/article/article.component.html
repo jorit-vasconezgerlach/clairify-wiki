@@ -1,12 +1,14 @@
 <header><span>Clarify Wiki</span><a href="../">Home</a></header>
 <div class="wrapper">
   <div class="innerWrapper">
-    <div id="article" *ngIf="article">
-      <h1>{{ article.title }}</h1>
+    <article lang="{{ article.language }}" id="article" *ngIf="article">
+      <div class="infos">
+        <span>{{ calculateReadTimeByCharacters(article.content) }} read</span>
+      </div>
       <markdown tableContainer>{{ article.content }}</markdown>
-    </div>
+    </article>
     <div id="article" *ngIf="article === false">
-      <h1>Nothing Here Yet</h1>
+      <h1 class="error">Nothing Here Yet!</h1>
     </div>
     <div id="question" *ngIf="article" style="display: none;">
       <input type="text" placeholder="Still an open question?">
