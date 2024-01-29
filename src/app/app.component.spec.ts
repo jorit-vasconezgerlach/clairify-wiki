@@ -20,16 +20,16 @@ describe('AppComponent', () => {
     expect(app).toBeTruthy();
   });
 
-  it(`should have as title 'clairify-wiki'`, () => {
+  it(`should have as title 'clarify-wiki'`, () => {
     const fixture = TestBed.createComponent(AppComponent);
     const app = fixture.componentInstance;
-    expect(app.title).toEqual('clairify-wiki');
+    expect(app.title).toEqual('clarify-wiki');
   });
 
   it('should render title', () => {
     const fixture = TestBed.createComponent(AppComponent);
     fixture.detectChanges();
     const compiled = fixture.nativeElement as HTMLElement;
-    expect(compiled.querySelector('.content span')?.textContent).toContain('clairify-wiki app is running!');
+    expect(compiled.querySelector('.content span')?.textContent).toContain('clarify-wiki app is running!');
   });
 });

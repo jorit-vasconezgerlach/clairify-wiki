@@ -1,43 +1,38 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, ViewEncapsulation } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
-import { ArticleService } from '../article.service';
-import { MarkdownService } from 'ngx-markdown';
 
 import { Article } from '../article.model';
+import { ArticleService } from '../services/article.service';
+import { TitleService } from '../services/title.service';
 
 @Component({
     selector: 'app-root',
     templateUrl: './article.component.html',
-    styleUrls: ['./article.component.scss']
+    styleUrls: ['./article.component.scss'],
+    encapsulation: ViewEncapsulation.None,
 })
 export class ArticleComponent {
-    article: Article = {
-        _id: "",
-        title: "Error",
-        author: {
-            id: "",
-            name: "Error",
-        },
-        content: "",
-        tags: [],
-        path: '',
-        created_at: new Date("23-01-2004"),
-    };
-    renderedMarkdown: string = "something";
-
+    currentPath: String | undefined;
+    article: Article | undefined | false;
     title = 'article-component';
 
     constructor(
-        private route: ActivatedRoute,
         private articleService: ArticleService,
-        private markdownService: MarkdownService
+        private route: ActivatedRoute,
+        private titleService: TitleService
     ) { }
 
     ngOnInit(): void {
-        const path = this.route.snapshot.params['path'];
-        this.articleService.getArticle(path).subscribe(article => {
-            this.article = article;
-            this.renderedMarkdown = this.markdownService.compile(article.content || '');
+        this.currentPath = this.route.snapshot.url.map(segment => segment.path).join('/');
+
+        this.articleService.getArticle(this.currentPath).subscribe((data) => {
+            if(data.content && data.title) {
+                this.titleService.setTitle(data.title);
+                this.article = data;
+            } else {
+                this.article = false;
+                this.titleService.setTitle("Article Not Found - Clarify Wiki");
+            }
         });
     }
 }

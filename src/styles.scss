@@ -11,8 +11,29 @@ $fullHeight: 100vh;
     -moz-osx-font-smoothing: grayscale;
 }
 
+header {
+    padding: .8rem 1rem;
+    background: #183D3D;
+    display: flex;
+    gap: 1.2rem;
+    position: sticky;
+    top: 0;
+    left: 0;
+}
 body {
-    background: #1E1E1E;
+    background: #040D12;
+}
+
+h1, h2, h3, h4, h5, h6, p {
+    overflow-wrap: break-word;
+}
+
+a {
+    color: #93B1A6;
+    text-decoration: none;
+}
+a:hover {
+    text-decoration: underline;
 }
 
 :root {

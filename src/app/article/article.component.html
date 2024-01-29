@@ -1,5 +1,16 @@
-<div *ngIf="article">
-    <h2>{{ article.title }}</h2>
-    <p>Author: {{ article.author.name }}</p>
-    <div [innerHTML]="renderedMarkdown"></div>
-</div>  
+<header><span>Clarify Wiki</span><a href="../">Home</a></header>
+<div class="wrapper">
+  <div class="innerWrapper">
+    <div id="article" *ngIf="article">
+      <h1>{{ article.title }}</h1>
+      <markdown tableContainer>{{ article.content }}</markdown>
+    </div>
+    <div id="article" *ngIf="article === false">
+      <h1>Nothing Here Yet</h1>
+    </div>
+    <div id="question" *ngIf="article" style="display: none;">
+      <input type="text" placeholder="Still an open question?">
+    </div>
+  </div>
+  <p class="current">currently reading <span>{{ currentPath }}</span></p>
+</div>
