@@ -4,7 +4,7 @@ import { Title, Meta } from '@angular/platform-browser';
 @Injectable({
     providedIn: 'root',
 })
-export class TitleService {
+export class HeadService {
     
     constructor(
         private title: Title,

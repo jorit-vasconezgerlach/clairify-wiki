@@ -9,7 +9,7 @@ import { ArticleNewComponent } from './article/new/articleNew.component';
 
 const routes: Routes = [
   { path: '', component: StartPageComponent },
-  { path: ':path', component: ArticleComponent },
+  { path: ':path', component: ArticleComponent},
   { path: ':path/edit', component: ArticleEditComponent },
   { path: ':path/plain', component: ArticlePlainComponent },
   { path: 'new', component: ArticleNewComponent },

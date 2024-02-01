@@ -1,9 +1,9 @@
-import { Component, ViewEncapsulation } from '@angular/core';
+import { Component, OnInit, ViewEncapsulation } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 
 import { Article } from '../article.model';
 import { ArticleService } from '../services/article.service';
-import { TitleService } from '../services/head.service';
+import { HeadService } from '../services/head.service';
 import { Location } from '@angular/common';
 
 @Component({
@@ -12,7 +12,7 @@ import { Location } from '@angular/common';
     styleUrls: ['./article.component.scss'],
     encapsulation: ViewEncapsulation.None,
 })
-export class ArticleComponent {
+export class ArticleComponent implements OnInit {
     currentPath: String | undefined;
     article: Article | undefined | false;
     title = 'article-component';
@@ -20,7 +20,7 @@ export class ArticleComponent {
     constructor(
         private articleService: ArticleService,
         private route: ActivatedRoute,
-        private titleService: TitleService,
+        private titleService: HeadService,
         private location: Location
     ) { }
 
@@ -29,7 +29,7 @@ export class ArticleComponent {
 
         this.articleService.getArticle(this.currentPath).subscribe((data) => {
             if(data.content && data.title) {
-                this.titleService.setTitle(`${data.title}  - Clarify Wiki`);
+                this.titleService.setTitle(`${data.title} - Clarify Wiki`);
                 this.titleService.setLanguage(`${data.language}`);
                 this.titleService.setDescription(data.description);
                 if(data.tags != null || data.tags != '') {
